@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+app.post('/', (req, res) => {
+    res.render('shortenUrl')
+})
+
 app.listen(PORT, () => {
     console.log(`App is running on localhost:${PORT}`)
 })

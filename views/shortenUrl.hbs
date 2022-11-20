@@ -1,0 +1,29 @@
+<div class="container" style="text-align: center ; margin-top:20rem">
+    <h1 style="margin-bottom: 5rem;">縮網址產生器
+    </h1>
+    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+        alt="link-img" style="width: 10rem; height: 10rem; margin-bottom: 3rem;">
+    <div>
+        <div>
+            <p>短網址已經建立囉!</p>
+            <b>
+                <a href="www">
+                    <font id="ShortenUrl" size="5" color="blue" face="Arial">https://www
+                    </font>
+                </a>
+            </b>
+        </div>
+        <div>
+            <button type="buttom" onclick="copyLink()">複製網址</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function copyLink() {
+        const inputText = document.getElementById('ShortenUrl').innerText;
+        navigator.clipboard.writeText(inputText)
+        alert('已複製到剪貼簿');
+    }
+</script>
