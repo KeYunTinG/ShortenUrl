@@ -30,7 +30,16 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     const originalURL = req.body.original_URL
-    res.render('shortenUrl', { originalURL })
+    let alphabetNumber = 'abcdefghijklmnopqrstuvwxyz1234567890'
+    alphabetNumber = alphabetNumber.split('')
+    let shortUrl = ''
+    function randomCode(array) {
+        return array[Math.floor(Math.random() * array.length)]
+    }
+    for (let i = 0; i < 5; i++) {
+        shortUrl += randomCode(alphabetNumber)
+    }
+    res.render('shortenUrl', { shortUrl })
 })
 
 app.listen(PORT, () => {
