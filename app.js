@@ -3,6 +3,8 @@ const app = express()
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const URL = require('./models/url')
+const generate_shortenURL = require('./generate_shortenURL')
 const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -30,17 +32,20 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
     const originalURL = req.body.original_URL
-    let alphabetNumber = 'abcdefghijklmnopqrstuvwxyz1234567890'
-    alphabetNumber = alphabetNumber.split('')
-    let shortUrl = ''
-    function randomCode(array) {
-        return array[Math.floor(Math.random() * array.length)]
-    }
-    for (let i = 0; i < 5; i++) {
-        shortUrl += randomCode(alphabetNumber)
-    }
-    res.render('shortenUrl', { shortUrl })
+    URL.findOne({ originalURL })
+        .then((item) => {
+            if (!item) {
+                let shortUrl = generate_shortenURL
+                URL.create({ originalURL, shortUrl })
+                    .then(() => res.render('shortenUrl', { shortUrl }))
+                    .catch(err => console.log(err))
+            } else {
+                shortUrl = item.shortUrl
+                res.render('shortenUrl', { shortUrl })
+            }
+        })
 })
+
 
 app.listen(PORT, () => {
     console.log(`App is running on localhost:${PORT}`)
