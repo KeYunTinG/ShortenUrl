@@ -35,7 +35,7 @@ app.post('/', (req, res) => {
     URL.findOne({ originalURL })
         .then((item) => {
             if (!item) {
-                let shortUrl = generate_shortenURL
+                let shortUrl = generate_shortenURL()
                 URL.create({ originalURL, shortUrl })
                     .then(() => res.render('shortenUrl', { shortUrl }))
                     .catch(err => console.log(err))
@@ -46,6 +46,18 @@ app.post('/', (req, res) => {
         })
 })
 
+app.get('/:shortUrl', (req, res) => {
+    const shortUrl = req.params.shortUrl
+    URL.findOne({ shortUrl })
+        .lean()
+        .then((item) => {
+            if (!item) {
+                res.redirect('/')
+            } else {
+                res.redirect(`${item.originalURL}`)
+            }
+        })
+})
 
 app.listen(PORT, () => {
     console.log(`App is running on localhost:${PORT}`)
