@@ -44,6 +44,7 @@ app.post('/', (req, res) => {
                 res.render('shortenUrl', { shortUrl })
             }
         })
+
 })
 
 app.get('/:shortUrl', (req, res) => {

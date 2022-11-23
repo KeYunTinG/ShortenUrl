@@ -7,8 +7,19 @@
         <div>
             <form action="/" method="post">
                 <input type="text" required="required" placeholder="在這裡輸入你的網址" name="original_URL">
-                <button type="submit">縮網址</button>
+                <button type="submit" onclick="chickLink()">縮網址</button>
             </form>
         </div>
     </div>
 </div>
+<script>
+    function chickLink() {
+        const inputText = document.getElementsByName('original_URL')[0].value
+        if ((inputText.indexOf('http://', 0) !== 1) || (inputText.indexOf('https://', 0) !== 1)) {
+            alert('您入的網址格式不符，檢查是否忘了加 http:// ');
+            event.preventDefault()
+            Event.stopPropagation()
+
+        }
+    }
+</script>
