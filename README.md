@@ -21,16 +21,16 @@ https://github.com/KeYunTinG/ShortenUrl.git
 cd ShortenUrl
 ```
 
-4.安裝nodemon
+4.安裝npm 套件
 
 ```
-npm install -g nodemon
+npm install 
 ```
 
 5.安裝完畢後，輸入：
 
 ```
-nodemon app.js
+npm run dev
 ```
 
 6.若能看見以下訊息代表運行成功，可用瀏覽器進入到以下網址:
@@ -47,8 +47,9 @@ ctrl + c
 
 ## 開發工具
 - Node.js 16.17.1
-- Express 4.16.4
+- Express 4.17.1
 - Express-Handlebars 4.0.2
 - Bootstrap 5.1.3
 - MongoDB
-- mongoose 6.0.5
+- mongoose 5.9.7
+- body-parser 1.20.1
